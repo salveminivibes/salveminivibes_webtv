@@ -1,0 +1,283 @@
+*{
+    cursor: url("https://i.ibb.co/mSsh2Xb/edit-2.png") 13 7, auto !important;
+}
+
+:root{
+    --main-color: #080808;
+    --pane-padding: 5px 42px;
+    --main-padding-video: 8px;
+    --main-border-video: 3px;
+    --main-border-radius: 30px;
+    --main-container-size: 1920px;
+    --main-font: 'Product Sans', sans-serif;
+    --description-font: 'Circular Sp Cyr Light', sans-serif;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--main-color);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    }
+a{
+    cursor: url("https://i.ibb.co/sj7nTpR/edit-1.png") 64 12, auto !important; 
+  }
+
+.titlenav{
+    color: white;
+    font-family: 'Product Sans', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.container {
+  display: flex;
+  height: 900px;
+  width: 1920px;
+  margin-top: 7%;
+  margin-left: 2%;
+}
+
+
+.video-container {
+  flex: 2;
+  background-color: #080808;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 1920px;
+  height: 700px;
+  border: 3px solid #d8d8d8;
+  padding: 8px;
+}
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+.video-list {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  height: 750px;
+  overflow-x: hidden;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Aggiungiamo la scrollbar verticale */
+}
+
+.info-box{
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+  font-family: var(--description-font);
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+  word-break: break-all;
+}
+
+.video-list img {
+  width: 60%;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 3px solid #d8d8d8;
+  padding: 2px;
+  border-radius: 30px;
+}
+
+
+.header{
+    display:block;
+  }
+  
+nav{
+  font-family: var(--main-font);
+  background-position: center;
+  background: rgb(131,58,180);
+  background: radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(19,71,210,0.8827906162464986) 23%, rgba(40,95,203,1) 53%, rgba(58,112,198,1) 78%, rgba(29,60,253,0.5550595238095238) 100%, rgba(252,176,69,0.5242471988795518) 100%);
+  background-size: cover; /* Imposta la dimensione dell'immagine di sfondo in modo che copra l'intero elemento */
+  background-attachment: fixed; /* Fissa l'immagine di sfondo, in modo che rimanga fissa quando si scorre la pagina */
+}
+
+nav {
+  text-align: right;
+  align-content: center;
+  margin: 0 auto;
+  align-items: center;
+  position: fixed;
+  top: 2%;
+  word-break: normal;
+  bottom: auto;
+  left: 1%;
+  right: 1%;
+  outline: 2px solid rgb(255, 255, 255, .3);
+  display:flex;
+  justify-content: space-between;
+  background-color: rgba(87, 87, 87, 0.116); /* Colore di sfondo semi trasparente */
+  padding: 5px 0;
+  color: black;
+  border-radius: 10px;
+  padding-right: 20px;
+  padding-left: 15px;
+  backdrop-filter: blur(10px); /* Effetto blur */
+  z-index:2;
+}
+
+nav a {
+  color: rgb(243, 243, 243);
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 0.65%;
+  border-radius: 6px;
+  margin-bottom: 1.0%;
+  margin-left: -10%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  float: left;
+  text-align: center;
+}
+
+nav a:hover {
+  outline: solid 3px rgba(255, 255, 255, 0.61);
+  color: #ffffff;
+}
+
+nav img{
+  height: 70px;
+  width: auto;
+  
+}
+
+.btnspecialnav{
+  background-color: white;
+  color:rgba(0, 0, 0, 100);
+  margin-left: 50%;
+  width:fit-content;
+}
+
+.btnspecialnav:hover{
+  background-color: white;
+  color:black;
+  width:fit-content;
+}
+
+
+.menu-butt{
+  display: none;
+}
+
+  @media only screen and (max-width: 412px) {
+    body {
+      background-color: var(--main-color);
+    }
+
+    nav {
+        text-align: right;
+        align-content: center;
+        margin: 0 auto;
+        align-items: right;
+        position: fixed;
+        top: 2%;
+        word-break: normal;
+        bottom: auto;
+        left: 3%;
+        margin-right: 3%;
+        outline: 2px solid rgb(255, 255, 255, .3);
+        display:flex;
+        justify-content: space-between;
+        background-color: rgba(0, 0, 0, 0); /* Colore di sfondo semi trasparente */
+        padding: 5px 0;
+        color: black;
+        border-radius: 10px;
+        padding-right: 20px;
+        padding-left: 15px;
+        backdrop-filter: blur(10px); /* Effetto blur */
+        z-index:3;
+      }
+      
+      nav a {
+        display: block;
+      }
+      
+      .titlenav {
+        color: white;
+        font-family: 'Product Sans', sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+      }
+      
+      nav img{
+        height: 70px;
+        width: auto;
+        
+      }
+
+      
+
+      .container {
+          display: flex;
+          flex-direction: column;
+          height: 700px;
+          width: 400px;
+          margin-top: 30%;
+          margin-left: 2%;
+        }
+  
+
+      .video-container {
+        flex: 1;
+        background-color: #080808;
+        border-radius: 30px;
+        overflow: hidden;
+        width: 374px;
+        height: 300px;
+        border: 3px solid #d8d8d8;
+        padding: 8px;
+        top: 10%
+      }
+      .video-container iframe {
+          width: 100%;
+          height: 100%;
+          border-radius: 20px;
+        }
+      
+      .video-list {
+        top: 10%;
+        flex:2;
+        padding: 20px;
+        border-radius: 10px;
+        height: 750px;
+        overflow-x: hidden;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto; /* Aggiungiamo la scrollbar verticale */
+      }
+      
+      .video-list img {
+        width: 60%;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 20px;
+        border: 3px solid #d8d8d8;
+        padding: 2px;
+      }
+
+      .info-box{
+        text-align: center;
+        font-size: 20px;
+    }
+      
+  }
+  

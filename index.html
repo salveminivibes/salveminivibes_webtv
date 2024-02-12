@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://player.live-video.net/1.22.0/amazon-ivs-player.min.js" defer></script>
+  <link rel="icon" type="image/x-icon" href="logoicon.ico">
+  <title>SALVEMINI VIBES - WEBTV</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+    <img src="logo.png" class="img-logo btnlink">
+    <p class="titlenav">WEBTV</p>
+        <div class="dropdown">
+            <a target="_blank" class="menu-butt btnlink">Menu</a>
+            <div class="dropdown-content">
+              <a href="index.html" target="_blank" class="margin-left: 10px;">Home</a>
+            </div>
+        </div>
+</nav> 
+    </header>
+
+  <div class="container">
+    <div class="video-container" id="video-container">
+      <p class="info-box">Clicca su un video per guardarlo!</p>
+      <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+      <div class="overlay" id="overlay"></div>
+    </div>
+    <div class="video-list" id="video-list">
+      <!-- Le anteprime dei video verranno generate qui -->
+    </div>
+  </div>
+  <div>
+      <p>Titolo: <span id="title"></span></p>
+      <p>Data di Pubblicazione: <span id="publish-date"></span></p>
+      <p>Visualizzazioni: <span id="views"></span></p>
+    </div>
+  <script>
+    // Funzione per caricare i dati JSON e generare le anteprime dei video
+    function loadVideoThumbnails() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              var videoData = JSON.parse(xhr.responseText);
+              var videoList = document.getElementById("video-list");
+              videoData.forEach(function(video) {
+                var img = document.createElement("img");
+                img.src = video.thumbnail;
+                img.alt = "Thumbnail";
+                img.addEventListener("click", function() {
+                  changeVideo(video.id);
+                });
+                videoList.appendChild(img);
+              });
+            } else {
+              console.error("Errore durante il caricamento dei dati JSON");
+            }
+          }
+        };
+        xhr.open("GET", "video-id.json", true);
+        xhr.send();
+      }
+  
+      // Funzione per cambiare il video nell'iframe
+      function changeVideo(videoId) {
+        var iframe = document.querySelector('.video-container iframe');
+        iframe.src = "https://www.youtube.com/embed/" + videoId;
+        fetchVideoInfo(videoId);
+      }
+  
+      // Funzione per ottenere informazioni sul video da YouTube
+      function fetchVideoInfo(videoId) {
+        var videoUrl = "https://www.youtube.com/watch?v=" + videoId;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(xhr.responseText, 'text/html');
+
+            // Trova l'elemento che contiene il titolo
+            var titleElement = doc.querySelector('meta[property="og:title"]');
+            if (titleElement) {
+              document.getElementById('title').textContent = titleElement.getAttribute('content');
+            }
+
+            // Trova l'elemento che contiene la data di pubblicazione
+            var publishedAtElement = doc.querySelector('.watch-time-text');
+            if (publishedAtElement) {
+              document.getElementById('publish-date').textContent = publishedAtElement.textContent;
+            }
+
+            // Trova l'elemento che contiene il numero di visualizzazioni
+            var viewCountElement = doc.querySelector('.view-count');
+            if (viewCountElement) {
+              document.getElementById('views').textContent = viewCountElement.textContent;
+            }
+          }
+        };
+        xhr.open('GET', videoUrl, true);
+        xhr.send();
+      }
+
+      // Carica i dati dei video al caricamento della pagina
+      document.addEventListener("DOMContentLoaded", function(event) {
+        loadVideoThumbnails();
+      });
+  </script>  
+</body>
+</html>
