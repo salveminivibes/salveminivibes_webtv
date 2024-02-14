@@ -6,10 +6,16 @@
   <script src="https://player.live-video.net/1.22.0/amazon-ivs-player.min.js" defer></script>
   <link rel="icon" type="image/x-icon" href="logoicon.ico">
   <title>SALVEMINI VIBES - WEBTV</title>
+  <script src="https://player.live-video.net/1.22.0/amazon-ivs-player.min.js" defer></script>
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <style>
+    *{
+      cursor: url('./edit_\ \(2\).png'), !important;
+    }
+  </style>
   <header>
     <nav>
     <img src="logo.png" class="img-logo btnlink">
@@ -25,11 +31,11 @@
 
   <div class="container">
     <div class="video-container" id="video-container">
-      <p class="info-box">Clicca su un video per guardarlo!</p>
+      <div class="no-video-message">Clicca su una delle immagini per visualizzare il video</div>
       <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
       <div class="overlay" id="overlay"></div>
     </div>
-    <div class="video-list" id="video-list">
+    <div class="video-list" id="video-list" style="cursor: pointer;">
       <!-- Le anteprime dei video verranno generate qui -->
     </div>
   </div>
@@ -100,6 +106,14 @@
               document.getElementById('views').textContent = viewCountElement.textContent;
             }
           }
+
+                    // Aggiungi un gestore di eventi per nascondere il messaggio quando viene selezionato un video
+        var videoThumbnails = document.querySelectorAll('.video-list img');
+        videoThumbnails.forEach(function(thumbnail) {
+          thumbnail.addEventListener('click', function() {
+            changeVideo(thumbnail.dataset.videoId); // Supponendo che l'ID del video sia memorizzato nell'attributo "data-video-id" dell'immagine
+          });
+        });
         };
         xhr.open('GET', videoUrl, true);
         xhr.send();
